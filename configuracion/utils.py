@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from configuracion.api import *
 from tkinter import Canvas
+from datetime import datetime, timedelta
+
 
 
 # Inicialización de valores actuales y fijos
@@ -148,4 +150,5 @@ class PieChart:
     def update(self, value, fixed_value):
         percentage = (value / fixed_value) * 360  # Convertir a grados
         self.draw(percentage)
+
 

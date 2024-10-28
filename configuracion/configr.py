@@ -1,7 +1,6 @@
 
 # Importaciones de librerías
 import tkinter as tk
-from configuracion.api import *
 from configuracion.utils import limpiar_ventana
 from PIL import Image, ImageTk
 from screens.calorias import interfaz_calorias
@@ -81,9 +80,10 @@ def crear_boton(frame, tipo, tamaño=(100, 100)):
         boton_canvas.create_text(ancho // 2, alto // 2, text=texto, font=("Intensa Fuente", 12), fill="White", anchor="center")
 
     dibujar_boton(fondo_color)
+    boton_canvas.pack(expand=True)
 
     def abrir_interfaz():
-        limpiar_ventana(frame)
+        limpiar_ventana(frame.master)
         if tipo == "calorias":
             interfaz_calorias(frame.master)
         elif tipo == "distancia":
