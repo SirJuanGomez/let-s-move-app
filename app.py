@@ -1,6 +1,7 @@
 import tkinter as tk
-from config.config import *
+from configuracion import *
 from login.login import *       # Importa la función ingreso desde login.py en la carpeta login
+from screens.main import *
 
 # Crear la ventana principal
 ventana = tk.Tk()
