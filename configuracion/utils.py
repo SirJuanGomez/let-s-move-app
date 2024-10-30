@@ -5,8 +5,6 @@ from configuracion.api import *
 from tkinter import Canvas
 from datetime import datetime, timedelta
 
-
-
 # Inicialización de valores actuales y fijos
 current_values = {
     "steps": 0,
@@ -15,22 +13,23 @@ current_values = {
 }
 
 fixed_values = {
-    "steps": 10000,
-    "calories": 2000,
-    "distance": 5.0
+    "steps": 10000,  # Meta diaria de pasos
+    "calories": 2000,  # Meta diaria de calorías
+    "distance": 5.0  # Meta diaria de distancia en kilómetros
 }
 
-
 def limpiar_ventana(ventana):
+    # Limpia todos los widgets de la ventana
     for widget in ventana.winfo_children():
         widget.destroy()
 
 def deslizador(master):
     def update_label(value):
+        # Actualiza la etiqueta con la opción seleccionada en el deslizador
         options = ["Hoy", "Semana", "Mes"]
         label.config(text=f"Seleccionado: {options[int(value)]}")
 
-    # Crear un deslizador con 3 opciones
+    # Crear un deslizador con 3 opciones (Hoy, Semana, Mes)
     slider = tk.Scale(
         master,
         from_=0,
@@ -60,19 +59,18 @@ def deslizador(master):
             options_frame,
             text=option,
             font=("Arial", 10),
-            bg="#f0f0f0",
+            bg="white",
             width=10,
             anchor="center"
         )
         option_label.grid(row=0, column=i, padx=(0, 10) if i < len(options) - 1 else 0)
 
-
 def mostrar_grafico_barras(graph_frame, calorias_semanales, calorias_mensuales):
     altura_maxima = 200  # Altura máxima para el gráfico
-    meta_semanal = 10000  # Ajusta según tu meta
-    meta_mensual = 40000  # Ajusta según tu meta
+    meta_semanal = 10000  # Meta de calorías semanales
+    meta_mensual = 40000  # Meta de calorías mensuales
 
-    # Calcular proporción para las barras
+    # Calcular proporción para las barras según las metas
     proporcion_semanal = min(calorias_semanales / meta_semanal, 1) * altura_maxima if calorias_semanales is not None else 0
     proporcion_mensual = min(calorias_mensuales / meta_mensual, 1) * altura_maxima if calorias_mensuales is not None else 0
 
@@ -80,7 +78,7 @@ def mostrar_grafico_barras(graph_frame, calorias_semanales, calorias_mensuales):
     for widget in graph_frame.winfo_children():
         widget.destroy()
 
-    # Crear las barras
+    # Crear las barras para calorías semanales
     barra_semanal = tk.Canvas(graph_frame, width=50, height=altura_maxima)
     barra_semanal.create_rectangle(0, altura_maxima - proporcion_semanal, 50, altura_maxima, fill="blue")
     barra_semanal.pack(side=tk.LEFT)
@@ -89,6 +87,7 @@ def mostrar_grafico_barras(graph_frame, calorias_semanales, calorias_mensuales):
     etiqueta_semanal = tk.Label(graph_frame, text=f'Semanal: {calorias_semanales}')
     etiqueta_semanal.pack(side=tk.LEFT)
 
+    # Crear las barras para calorías mensuales
     barra_mensual = tk.Canvas(graph_frame, width=50, height=altura_maxima)
     barra_mensual.create_rectangle(0, altura_maxima - proporcion_mensual, 50, altura_maxima, fill="green")
     barra_mensual.pack(side=tk.LEFT)
@@ -97,7 +96,7 @@ def mostrar_grafico_barras(graph_frame, calorias_semanales, calorias_mensuales):
     etiqueta_mensual = tk.Label(graph_frame, text=f'Mensual: {calorias_mensuales}')
     etiqueta_mensual.pack(side=tk.LEFT)
 
-    # Leyenda
+    # Leyenda para identificar las barras
     leyenda_frame = tk.Frame(graph_frame)
     leyenda_frame.pack(side=tk.LEFT)
     tk.Label(leyenda_frame, text="Leyenda:").pack()
@@ -107,10 +106,12 @@ def mostrar_grafico_barras(graph_frame, calorias_semanales, calorias_mensuales):
 def update_pie_charts():
     global current_values
 
+    # Actualiza los valores actuales de pasos, calorías y distancia
     current_values["steps"] = get_steps() or 0
     current_values["calories"] = get_calories() or 0
     current_values["distance"] = get_distance() * 1000 or 0
 
+    # Actualiza cada gráfico de pastel con los nuevos valores
     for pie_chart in pie_charts:
         pie_chart.update(current_values[pie_chart.data_type], fixed_values[pie_chart.data_type])
 
@@ -136,9 +137,11 @@ class PieChart:
         )
 
     def clear_canvas(self):
+        # Limpia el canvas de dibujos anteriores
         self.canvas.delete("all")
 
     def draw(self, angle):
+        # Dibuja el gráfico de pastel basado en el ángulo proporcionado
         self.clear_canvas()
         self.canvas.create_arc(
             self.center_x - self.radius, self.center_y - self.radius,
@@ -148,7 +151,6 @@ class PieChart:
         )
 
     def update(self, value, fixed_value):
+        # Actualiza el gráfico de pastel con el nuevo valor
         percentage = (value / fixed_value) * 360  # Convertir a grados
-        self.draw(percentage)
-
-
+        self.draw(percentage)  # Dibuja el gráfico de pastel con el nuevo ángulo
