@@ -71,6 +71,7 @@ Para acceder a la API de Fitbit, es necesario autenticar a los usuarios utilizan
 ## Notas Adicionales
 - Asegúrate de revisar los límites de tasa y las políticas de uso de la API de Fitbit.
 - Puedes encontrar más información sobre la API en el [portal de desarrolladores de Fitbit](https://dev.fitbit.com/).
+- - En el archivo de ```mas_opciones.py``` exite una importacion comentada donde el usuario puede quitarlo para obtener el codigo desde ``apy.py`` o desde ``test_data.py``
 ## Apéndices
 
 ### A. Consideraciones de Seguridad
