@@ -11,7 +11,7 @@ Les't Move App es una aplicación con una interfaz de usuario intuitiva basada e
 
 ## Tecnologías
 - **Lenguaje**: Python
-- **Framework**: Flask (para el backend) y Tkinter (para la interfaz de usuario)
+- **Framework**: Tkinter (para la interfaz de usuario), Pillow (para el procesamiento de imagenes) y matplotlib (para la creacion de graficos)
 - **API**: API de Fitbit
 
 ## Requisitos
@@ -34,10 +34,12 @@ Les't Move App es una aplicación con una interfaz de usuario intuitiva basada e
    python setup.py
 
 
-3.Configura las credenciales de la API de Fitbit. Crea un archivo llamado ```config.py``` dentro de la carpeta ```configuracion``` y agrega tus credenciales:
+3.Configura las credenciales de la API de Fitbit. Edita un archivo llamado ```api.py``` dentro de la carpeta ```configuracion``` y agrega tus credenciales:
 
-    CLIENT_ID=tu_client_id
-    CLIENT_SECRET=tu_client_secret
+    CLIENT_ID="tu_client_id"
+    CLIENT_SECRET="tu_client_secret"
+    ACCES_TOKEN="tu_acces_token" 
+    REFRESH_TOKEN="tu_token_de_refresco"
 
 
 ## Acknowledgements
@@ -71,7 +73,7 @@ Para acceder a la API de Fitbit, es necesario autenticar a los usuarios utilizan
 ## Notas Adicionales
 - Asegúrate de revisar los límites de tasa y las políticas de uso de la API de Fitbit.
 - Puedes encontrar más información sobre la API en el [portal de desarrolladores de Fitbit](https://dev.fitbit.com/).
-- - En el archivo de ```mas_opciones.py``` exite una importacion comentada donde el usuario puede quitarlo para obtener el codigo desde ``apy.py`` o desde ``test_data.py``
+- En el archivo de ```mas_opciones.py``` exite una importacion comentada donde el usuario puede quitarlo para obtener el codigo desde ``apy.py`` o desde ``test_data.py``
 ## Apéndices
 
 ### A. Consideraciones de Seguridad
