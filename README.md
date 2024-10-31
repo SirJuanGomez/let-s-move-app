@@ -30,7 +30,6 @@ Les't Move App es una aplicación con una interfaz de usuario intuitiva basada e
 2. Instala las dependencias desde ```setup.py```:
     
     ```bash
-   git clone https://github.com/SirJuanGomez/les_t_move_app.git
    cd les_t_move_app
    python setup.py
 
