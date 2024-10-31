@@ -27,11 +27,12 @@ Les't Move App es una aplicación con una interfaz de usuario intuitiva basada e
    cd les_t_move_app
 
 
-2. Instala las dependencias desde setup.py:
+2. Instala las dependencias desde ```setup.py```:
     
     ```bash
    git clone https://github.com/SirJuanGomez/les_t_move_app.git
    cd les_t_move_app
+   python setup.py
 
 
 3.Configura las credenciales de la API de Fitbit. Crea un archivo llamado ```config.py``` dentro de la carpeta ```configuracion``` y agrega tus credenciales:
